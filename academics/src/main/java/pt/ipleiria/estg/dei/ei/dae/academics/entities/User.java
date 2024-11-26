@@ -1,14 +1,12 @@
 package pt.ipleiria.estg.dei.ei.dae.academics.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.annotations.DialectOverride;
 
 @Entity
 @Table(name = "users")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class User extends Versionable {
+public class User {
     @Id
     private String username;
     @NotNull

@@ -20,22 +20,24 @@ public class Product {
     @NotBlank
     private String category;
     @NotBlank
-    private String estado;
+    private String limite; // valor ao qual o produto se estraga
     @NotBlank
     private int stock;
     @NotBlank
     private double price;
+    @ManyToOne
+    private Warehouse warehouse;
     @Version
     private int version;
 
     public Product() {
     }
 
-    public Product(long code, String name, String category, String estado, int stock, double price) {
+    public Product(long code, String name, String category, String limite, int stock, double price) {
         this.code = code;
         this.name = name;
         this.category = category;
-        this.estado = estado;
+        this.limite = limite;
         this.stock = stock;
         this.price = price;
     }
@@ -64,14 +66,6 @@ public class Product {
         this.category = category;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
     public int getStock() {
         return stock;
     }
@@ -95,5 +89,13 @@ public class Product {
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public String getLimite() {
+        return limite;
+    }
+
+    public void setLimite(String limite) {
+        this.limite = limite;
     }
 }
