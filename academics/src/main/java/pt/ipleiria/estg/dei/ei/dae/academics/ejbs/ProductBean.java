@@ -40,4 +40,16 @@ public class ProductBean {
         }
         return produto;
     }
+
+    public Product update(long code, String name, String category, String limite, int stock, double price, int idWarehouse) {
+        var product = find(code);
+        product.setName(name);
+        product.setCategory(category);
+        product.setLimite(limite);
+        product.setStock(stock);
+        product.setPrice(price);
+        product.setWarehouse(warehouseBean.find(idWarehouse));
+        entityManager.merge(product);
+        return product;
+    }
 }

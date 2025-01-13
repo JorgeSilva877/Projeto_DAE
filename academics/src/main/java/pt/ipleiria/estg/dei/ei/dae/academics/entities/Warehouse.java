@@ -33,5 +33,6 @@ public class Warehouse {
     public void removeProduct(Product product) {
         this.products.remove(product);
     }
+    
 
 }
