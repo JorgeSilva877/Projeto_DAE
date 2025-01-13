@@ -1,28 +1,38 @@
-package pt.ipleiria.estg.dei.ei.dae.academics.entities;
+package pt.ipleiria.estg.dei.ei.dae.academics.dtos;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.Sensor;
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.Volume;
 
-@Entity
-public class Sensor {
-    @Id
+import java.util.List;
+
+public class SensorDTO {
     private int id;
     private String type;
     private int valor;
-    @OneToOne
     private Volume volume;
     private boolean isActive;
 
-    public Sensor() {
+    public SensorDTO() {
     }
 
-    public Sensor(int id, String type, Volume volume) {
+    public SensorDTO(int id, String type, Volume volume) {
         this.id = id;
         this.type = type;
         this.valor = 0;
         this.volume = volume;
         this.isActive = true;
+    }
+
+    public static SensorDTO from(Sensor sensor) {
+        return new SensorDTO(
+                sensor.getId(),
+                sensor.getType(),
+                sensor.getVolume()
+        );
+    }
+
+    public static List<SensorDTO> from(List<Sensor> sensors) {
+        return sensors.stream().map(SensorDTO::from).toList();
     }
 
     public int getId() {
@@ -49,14 +59,6 @@ public class Sensor {
         this.valor = valor;
     }
 
-    public Volume getVolume() {
-        return volume;
-    }
-
-    public void setVolume(Volume volume) {
-        this.volume = volume;
-    }
-
     public boolean isActive() {
         return isActive;
     }
@@ -65,4 +67,11 @@ public class Sensor {
         isActive = active;
     }
 
+    public Volume getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Volume volume) {
+        this.volume = volume;
+    }
 }
