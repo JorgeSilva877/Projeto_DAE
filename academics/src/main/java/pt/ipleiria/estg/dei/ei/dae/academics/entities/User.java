@@ -1,6 +1,7 @@
 package pt.ipleiria.estg.dei.ei.dae.academics.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -9,11 +10,11 @@ import jakarta.validation.constraints.NotNull;
 public class User {
     @Id
     private String username;
-    @NotNull
+    @NotBlank
     private String password;
-    @NotNull
+    @NotBlank
     private String name;
-    @NotNull
+    @NotBlank
     private String email;
     @Version
     private int version;

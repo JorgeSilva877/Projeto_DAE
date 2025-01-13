@@ -11,6 +11,8 @@ import java.util.logging.Logger;
 public class ConfigBean {
     @EJB
     private ProductBean productBean;
+    @EJB
+    private WarehouseBean warehouseBean;
 
     private static final Logger logger = Logger.getLogger("ejbs.ConfigBean");
 
@@ -18,9 +20,9 @@ public class ConfigBean {
     public void populate() {
         System.out.println("Hello Java EE!");
 
-
         try {
-            productBean.create(1, "Chocolate", "Comida", "10", 50, 2.79 );
+            warehouseBean.create(1);
+            productBean.create(1, "Chocolate", "Comida", "10", 50, 2.79, 1 );
         }
         catch (Exception e) {
             logger.severe(e.getMessage());

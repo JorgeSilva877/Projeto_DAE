@@ -2,6 +2,7 @@ package pt.ipleiria.estg.dei.ei.dae.academics.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @NamedQueries({
@@ -21,9 +22,9 @@ public class Product {
     private String category;
     @NotBlank
     private String limite; // valor ao qual o produto se estraga
-    @NotBlank
+    @NotNull
     private int stock;
-    @NotBlank
+    @NotNull
     private double price;
     @ManyToOne
     private Warehouse warehouse;
