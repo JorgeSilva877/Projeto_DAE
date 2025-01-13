@@ -5,6 +5,7 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Product;
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.Warehouse;
 
 import java.util.List;
 
@@ -14,8 +15,10 @@ public class ProductBean {
     private EntityManager entityManager;
 
 
-    public void create(long code, String name, String category, String estado, int stock, double price) {
-        var product = new Product( code,  name,  category,  estado,  stock,  price);
+    public void create(long code, String name, String category, String limite, int stock, double price, int idWarehouse) {
+        var warehouse =
+
+        var product = new Product( code,  name,  category, limite, stock,  price, warehouse);
         entityManager.persist(product);
     }
 

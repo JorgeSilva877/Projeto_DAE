@@ -3,15 +3,27 @@ import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
+
+import java.util.logging.Logger;
+
 @Startup
 @Singleton
 public class ConfigBean {
     @EJB
-    private StudentBean studentBean;
+    private ProductBean productBean;
+
+    private static final Logger logger = Logger.getLogger("ejbs.ConfigBean");
 
     @PostConstruct
     public void populate() {
         System.out.println("Hello Java EE!");
-        studentBean.create("joao", "password", "joao", "joao@email.com");
+
+
+        try {
+            productBean.create(1, "Chocolate", "Comida", "10", 50, 2.79 );
+        }
+        catch (Exception e) {
+            logger.severe(e.getMessage());
+        }
     }
 }

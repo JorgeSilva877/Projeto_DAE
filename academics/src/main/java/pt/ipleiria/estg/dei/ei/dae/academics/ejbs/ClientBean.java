@@ -6,7 +6,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Client;
-import pt.ipleiria.estg.dei.ei.dae.academics.entities.Student;
 
 import java.util.List;
 

@@ -33,13 +33,14 @@ public class Product {
     public Product() {
     }
 
-    public Product(long code, String name, String category, String limite, int stock, double price) {
+    public Product(long code, String name, String category, String limite, int stock, double price, Warehouse warehouse) {
         this.code = code;
         this.name = name;
         this.category = category;
         this.limite = limite;
         this.stock = stock;
         this.price = price;
+        this.warehouse = warehouse;
     }
 
     public long getCode() {
@@ -97,5 +98,13 @@ public class Product {
 
     public void setLimite(String limite) {
         this.limite = limite;
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 }
