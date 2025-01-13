@@ -14,7 +14,7 @@ public class ProductDTO {
     private String limite; // valor ao qual o produto se estraga
     private int stock;
     private double price;
-    private Warehouse warehouse;
+    private int warehouseId;
 
     public ProductDTO() {
     }
@@ -37,7 +37,7 @@ public class ProductDTO {
                 product.getLimite(),
                 product.getStock(),
                 product.getPrice(),
-                product.getWarehouse()
+                product.getWarehouse().getId()
         );
     }
 
@@ -93,8 +93,8 @@ public class ProductDTO {
         this.price = price;
     }
 
-    public Warehouse getWarehouse() {
-        return warehouse;
+    public int getWarehouseId() {
+        return warehouseId;
     }
 
     public void setWarehouseId(int warehouseId) {
