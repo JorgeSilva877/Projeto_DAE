@@ -1,13 +1,14 @@
- package pt.ipleiria.estg.dei.ei.dae.academics.dtos;
+package pt.ipleiria.estg.dei.ei.dae.academics.dtos;
 
 
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Product;
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.Warehouse;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ProductDTO {
-    private long code;
+    private int code;
     private String name;
     private String category;
     private String limite; // valor ao qual o produto se estraga
@@ -18,14 +19,14 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-    public ProductDTO(long code, String name, String category, String limite, int stock, double price, int warehouse) {
+    public ProductDTO(int code, String name, String category, String limite, int stock, double price, int warehouseId) {
         this.code = code;
         this.name = name;
         this.category = category;
         this.limite = limite;
         this.stock = stock;
         this.price = price;
-        this.warehouseId = warehouse;
+        this.warehouseId = warehouseId;
     }
 
     public static ProductDTO from(Product product) {
@@ -48,7 +49,7 @@ public class ProductDTO {
         return code;
     }
 
-    public void setCode(long code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -96,7 +97,7 @@ public class ProductDTO {
         return warehouseId;
     }
 
-    public void setWarehouseId(int warehouse) {
-        this.warehouseId = warehouse;
+    public void setWarehouseId(int warehouseId) {
+        this.warehouseId = warehouseId;
     }
 }

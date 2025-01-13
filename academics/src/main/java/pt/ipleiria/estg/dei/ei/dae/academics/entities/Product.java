@@ -15,7 +15,7 @@ import jakarta.validation.constraints.NotNull;
 
 public class Product {
     @Id
-    private long code;
+    private int code;
     @NotBlank
     private String name;
     @NotBlank
@@ -44,11 +44,11 @@ public class Product {
         this.warehouse = warehouse;
     }
 
-    public long getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(long code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

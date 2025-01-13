@@ -6,9 +6,16 @@ import jakarta.persistence.*;
 import java.util.LinkedList;
 import java.util.List;
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "getAllOrders",
+                query = "SELECT o FROM Order o ORDER BY o.code" // JPQL
+        )
+})
+@Table(name = "products")
 public class Order {
     @Id
-    private long code;
+    private int code;
     @ManyToOne
     private Client client;
     private String morada;
@@ -33,19 +40,19 @@ public class Order {
         this.products = new LinkedList<>();
     }
 
-    public Order(long code, Client client, String morada, float precoTotal, List<Product> products) {
+    public Order(int code, Client client, String morada, float precoTotal, List<Product> products) {
         this.code = code;
         this.client = client;
         this.morada = morada;
         this.precoTotal = precoTotal;
-        this.products = new LinkedList<>();
+        this.products = new LinkedList<>(products);
     }
 
-    public long getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(long code) {
+    public void setCode(int code) {
         this.code = code;
     }
 

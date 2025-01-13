@@ -1,12 +1,11 @@
 package pt.ipleiria.estg.dei.ei.dae.academics.ws;
 import jakarta.ejb.EJB;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import pt.ipleiria.estg.dei.ei.dae.academics.dtos.ProductDTO;
 import pt.ipleiria.estg.dei.ei.dae.academics.ejbs.ProductBean;
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.Product;
 
 import java.util.List;
 
@@ -22,6 +21,24 @@ public class ProductService {
     @Path("/") // means: the relative url path is “/api/product/”
     public List<ProductDTO> getAllProducts() {
         return ProductDTO.from(productBean.findAll());
+    }
+
+    @POST
+    @Path("/")
+    public Response create(ProductDTO productDTO) {
+        productBean.create(
+                productDTO.getCode(),
+                productDTO.getName(),
+                productDTO.getCategory(),
+                productDTO.getLimite(),
+                productDTO.getStock(),
+                productDTO.getPrice(),
+                productDTO.getWarehouseId()
+        );
+        Product product = productBean.find(productDTO.getCode());
+        return Response.status(Response.Status.CREATED)
+                .entity(ProductDTO.from(product))
+                .build();
     }
 
 
