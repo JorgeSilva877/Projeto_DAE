@@ -45,7 +45,7 @@ public class ProductDTO {
         return products.stream().map(ProductDTO::from).collect(Collectors.toList());
     }
 
-    public long getCode() {
+    public int getCode() {
         return code;
     }
 
