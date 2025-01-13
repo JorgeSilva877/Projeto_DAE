@@ -18,7 +18,7 @@ public class ProductBean {
     private WarehouseBean warehouseBean;
 
 
-    public void create(long code, String name, String category, String limite, int stock, double price, int idWarehouse) {
+    public void create(int code, String name, String category, String limite, int stock, double price, int idWarehouse) {
         var warehouse = warehouseBean.find(idWarehouse);
         if (warehouse == null) {
             throw new MyEntityNotFoundException("Warehouse" + warehouse + " does not exist"); //comentei para testar por n termos nenhum ainda
@@ -33,7 +33,7 @@ public class ProductBean {
         return entityManager.createNamedQuery("getAllProducts", Product.class).getResultList();
     }
 
-    public Product find(long code) {
+    public Product find(int code) {
         var produto = entityManager.find(Product.class, code);
         if (produto == null) {
             throw new RuntimeException("produto " + code + " not found");
@@ -41,7 +41,7 @@ public class ProductBean {
         return produto;
     }
 
-    public Product update(long code, String name, String category, String limite, int stock, double price, int idWarehouse) {
+    public Product update(int code, String name, String category, String limite, int stock, double price, int idWarehouse) {
         var product = find(code);
         product.setName(name);
         product.setCategory(category);
