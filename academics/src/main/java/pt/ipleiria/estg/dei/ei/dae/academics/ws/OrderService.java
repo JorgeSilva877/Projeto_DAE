@@ -25,7 +25,7 @@ public class OrderService {
 
     @POST
     @Path("/")
-    public void createNewOrder(OrderDTO orderDTO) throws MyEntityNotFoundException {
+    public void create(OrderDTO orderDTO) throws MyEntityNotFoundException {
         orderBean.create(
                 orderDTO.getCode(),
                 orderDTO.getClient(),
