@@ -9,6 +9,7 @@ import pt.ipleiria.estg.dei.ei.dae.academics.entities.Volume;
 import pt.ipleiria.estg.dei.ei.dae.academics.exceptions.MyEntityExistsException;
 import pt.ipleiria.estg.dei.ei.dae.academics.exceptions.MyEntityNotFoundException;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 @Stateless
@@ -33,8 +34,7 @@ public class SensorBean {
         }
         sensor = new Sensor(id, type, volume);
         entityManager.persist(sensor);
-
-
     }
+
 }
 
