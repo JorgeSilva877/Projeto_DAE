@@ -22,7 +22,7 @@ public class SensorBean {
 
     private static final Logger logger= Logger.getLogger(SensorBean.class.getName());
 
-    public void create(int id, String type, int volume_id) {
+    public void create(int id, String type, int volume_id) throws MyEntityNotFoundException, MyEntityExistsException {
         var volume = volumeBean.find(volume_id);
         if (volume == null) {
             throw new MyEntityNotFoundException("Volume não encontrado");
