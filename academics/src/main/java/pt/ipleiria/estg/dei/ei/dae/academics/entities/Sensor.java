@@ -1,10 +1,17 @@
 package pt.ipleiria.estg.dei.ei.dae.academics.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 @Entity
+@NamedQueries({
+        @NamedQuery(
+                name = "getAllSensors",
+                query = "SELECT s FROM Sensor s ORDER BY s.id"
+        )
+})
+
+@Table(name = "sensor")
+
 public class Sensor {
     @Id
     private int id;
