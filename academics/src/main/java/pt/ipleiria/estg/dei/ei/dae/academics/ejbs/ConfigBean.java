@@ -4,6 +4,8 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import jakarta.inject.Inject;
+import pt.ipleiria.estg.dei.ei.dae.academics.dtos.ProductDTO;
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.ProductAmount;
 
 import java.awt.geom.QuadCurve2D;
 import java.util.LinkedList;
@@ -45,9 +47,11 @@ public class ConfigBean {
             employeeBean.create("John","123","John","john@gmail.com");
 
             var cliente = clientBean.find("Mario");
-            List<Integer> idsProdutos = List.of(1,2);
+            List<ProductAmount> produtos = new LinkedList<>();
+            produtos.add(new ProductAmount(1L, 1, 2));
 
-            orderBean.create(1,cliente,"Rua almirante candido dos reis",10,idsProdutos);
+
+            orderBean.create(1,cliente,"Rua almirante candido dos reis",10, produtos);
 
 
         }

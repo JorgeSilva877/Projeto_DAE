@@ -1,6 +1,7 @@
 package pt.ipleiria.estg.dei.ei.dae.academics.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 
 import java.util.LinkedList;
@@ -20,19 +21,24 @@ public class Order {
     private Client client;
     private String morada;
     private float precoTotal;
-    @ManyToMany
-    @JoinTable(
-            name = "order_product",
-            joinColumns = @JoinColumn(
-                    name = "order_code",
-                    referencedColumnName = "code"
-            ),
-            inverseJoinColumns = @JoinColumn(
-                    name = "product_code",
-                    referencedColumnName = "code"
-            )
-    )
-    private List<Product> products;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "order_product",
+//            joinColumns = @JoinColumn(
+//                    name = "order_code",
+//                    referencedColumnName = "code"
+//            ),
+//            inverseJoinColumns = @JoinColumn(
+//                    name = "product_code",
+//                    referencedColumnName = "code"
+//            )
+//    )
+//    private List<Product> products;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "order_id")
+    private List<ProductAmount> products;
+    @NotBlank
+    private String estado;
     @Version
     private int version;
 
@@ -40,12 +46,13 @@ public class Order {
         this.products = new LinkedList<>();
     }
 
-    public Order(int code, Client client, String morada, float precoTotal, List<Product> products) {
+    public Order(int code, Client client, String morada, float precoTotal, List<ProductAmount> products) {
         this.code = code;
         this.client = client;
         this.morada = morada;
         this.precoTotal = precoTotal;
         this.products = new LinkedList<>(products);
+        this.estado = "Por empacotar";
     }
 
     public int getCode() {
@@ -80,15 +87,15 @@ public class Order {
         this.precoTotal = precoTotal;
     }
 
-    public List<Product> getProducts() {
+    public List<ProductAmount> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductAmount> products) {
         this.products = products;
     }
 
-    public void addProduct(Product product) {
+    public void addProduct(ProductAmount product) {
         this.products.add(product);
     }
 
@@ -96,13 +103,13 @@ public class Order {
         this.products.remove(product);
     }
 
-    public void calculateTotalPrice() {
-        float total = 0;
-        for (Product product : products) {
-            total += product.getPrice();
-        }
-        this.precoTotal = total;
-    }
+//    public void calculateTotalPrice() {
+//        float total = 0;
+//        for (ProductAmount product : products) {
+//            total += product.getPrice();
+//        }
+//        this.precoTotal = total;
+//    }
 
 
 

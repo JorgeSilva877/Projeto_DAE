@@ -4,6 +4,7 @@ import jakarta.ws.rs.core.Link;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Client;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Order;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Product;
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.ProductAmount;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -13,13 +14,13 @@ public class OrderDTO {
     private Client client;
     private String morada;
     private float precoTotal;
-    private List<ProductDTO> products;
+    private List<ProductAmountDTO> products;
 
     public OrderDTO() {
         this.products = new LinkedList<>();
     }
 
-    public OrderDTO(int code, Client client, String morada, float precoTotal, List<ProductDTO> products) {
+    public OrderDTO(int code, Client client, String morada, float precoTotal, List<ProductAmountDTO> products) {
         this.code = code;
         this.client = client;
         this.morada = morada;
@@ -33,7 +34,7 @@ public class OrderDTO {
                 order.getClient(),
                 order.getMorada(),
                 order.getPrecoTotal(),
-                ProductDTO.from(order.getProducts())
+                ProductAmountDTO.from(order.getProducts())
         );
     }
 
@@ -73,19 +74,29 @@ public class OrderDTO {
         this.precoTotal = precoTotal;
     }
 
-    public List<ProductDTO> getProducts() {
+    public List<ProductAmountDTO> getProducts() {
         return new LinkedList<>(products);
     }
 
-    public void setProducts(List<ProductDTO> products) {
+    public void setProducts(List<ProductAmountDTO> products) {
         this.products = new LinkedList<>(products);
     }
 
-    public List<Integer> getProductsId() {
-        List<Integer> productIds = new LinkedList<>();
-        for (ProductDTO product : products) {
-            productIds.add(product.getCode());
+    //posso fazer isto?
+    public List<ProductAmount> getProductsService() {
+        LinkedList<ProductAmount> productsService = new LinkedList<>();
+        for (ProductAmountDTO productAmountDTO : products) {
+            productsService.add(new ProductAmount(productAmountDTO.getCode(), productAmountDTO.getProductId(), productAmountDTO.getAmount()));
         }
-        return productIds;
+
+        return productsService;
     }
+
+//    public List<Integer> getProductsId() {
+//        List<Integer> productIds = new LinkedList<>();
+//        for (ProductAmountDTO product : products) {
+//            productIds.add(product.getProductId());
+//        }
+//        return productIds;
+//    }
 }
