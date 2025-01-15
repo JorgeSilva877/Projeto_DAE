@@ -20,5 +20,27 @@ Content-Type: application/json
   "warehouseId": 1
 }
 
+### GET VOLUMS
+GET http://localhost:8080/academics/api/volume/
+Accept: application/json
+
+
+### Enroll Sensor in Volume
+POST http://localhost:8080/academics/api/volume/enrollSensor
+Content-Type: application/json
+
+{
+  "id" : 2,
+  "sensorId" : 2
+}
+
+### Enroll Employee in Volume
+POST http://localhost:8080/academics/api/volume/enrollEmployee
+Content-Type: application/json
+
+{
+  "id" : 2,
+  "employeeUsername" : "John"
+}
 
 

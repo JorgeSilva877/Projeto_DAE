@@ -9,25 +9,24 @@ public class SensorDTO {
     private int id;
     private String type;
     private int valor;
-    private Volume volume;
     private boolean isActive;
+    private int volumeId;
 
     public SensorDTO() {
     }
 
-    public SensorDTO(int id, String type, Volume volume) {
+    public SensorDTO(int id, String type) {
         this.id = id;
         this.type = type;
         this.valor = 0;
-        this.volume = volume;
         this.isActive = true;
+        this.volumeId = 0;
     }
 
     public static SensorDTO from(Sensor sensor) {
         return new SensorDTO(
                 sensor.getId(),
-                sensor.getType(),
-                sensor.getVolume()
+                sensor.getType()
         );
     }
 
@@ -67,11 +66,11 @@ public class SensorDTO {
         isActive = active;
     }
 
-    public Volume getVolume() {
-        return volume;
+    public int getVolumeId() {
+        return volumeId;
     }
 
-    public void setVolume(Volume volume) {
-        this.volume = volume;
+    public void setVolumeId(int volumeId) {
+        this.volumeId = volumeId;
     }
 }

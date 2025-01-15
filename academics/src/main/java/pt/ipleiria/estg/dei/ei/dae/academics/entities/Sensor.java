@@ -1,5 +1,5 @@
 package pt.ipleiria.estg.dei.ei.dae.academics.entities;
-
+import java.util.List;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,7 +10,7 @@ import jakarta.persistence.*;
         )
 })
 
-@Table(name = "sensor")
+@Table(name = "sensors")
 
 public class Sensor {
     @Id
@@ -24,12 +24,12 @@ public class Sensor {
     public Sensor() {
     }
 
-    public Sensor(int id, String type, Volume volume) {
+    public Sensor(int id, String type) {
         this.id = id;
         this.type = type;
         this.valor = 0;
-        this.volume = volume;
-        this.isActive = true;
+        this.volume = null;
+        this.isActive = false;
     }
 
     public int getId() {
@@ -72,4 +72,11 @@ public class Sensor {
         isActive = active;
     }
 
+    public void addVolume(Volume volume) {
+        this.volume = volume;
+    }
+
+    public void removeVolume(Volume volume) {
+        this.volume = null;
+    }
 }

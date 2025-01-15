@@ -23,17 +23,12 @@ public class SensorBean {
 
     private static final Logger logger= Logger.getLogger(SensorBean.class.getName());
 
-    public void create(int id, String type, int volume_id) throws MyEntityNotFoundException, MyEntityExistsException {
-        var volume = volumeBean.find(volume_id);
-        if (volume == null) {
-            throw new MyEntityNotFoundException("Volume não encontrado");
-        }
-
+    public void create(int id, String type) throws MyEntityNotFoundException, MyEntityExistsException {
         var sensor = entityManager.find(Sensor.class, id);
         if (sensor != null) {
             throw new MyEntityExistsException("Esse sensor já existe!!");
         }
-        sensor = new Sensor(id, type, volume);
+        sensor = new Sensor(id, type);
         entityManager.persist(sensor);
     }
 
@@ -42,5 +37,21 @@ public class SensorBean {
         return entityManager.createNamedQuery("getAllSensors",Sensor.class).getResultList();
     }
 
+    public Sensor find(int id) throws MyEntityNotFoundException {
+        var sensor = entityManager.find(Sensor.class, id);
+        if (sensor == null) {
+            throw new MyEntityNotFoundException("Sensor não encontrado");
+        }
+        return sensor;
+    }
+    public void updateValue(int id, int valor) throws MyEntityNotFoundException {
+        var sensor = entityManager.find(Sensor.class, id);
+        if (sensor == null) {
+            throw new MyEntityNotFoundException("Sensor não encontrado");
+        }
+        sensor.setValor(valor);
+        entityManager.merge(sensor);
+
+    }
 }
 
