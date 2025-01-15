@@ -12,7 +12,7 @@ import java.util.List;
                 query = "SELECT o FROM Order o ORDER BY o.code" // JPQL
         )
 })
-@Table(name = "products")
+@Table(name = "orders")
 public class Order {
     @Id
     private int code;

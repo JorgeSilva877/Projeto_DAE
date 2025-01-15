@@ -80,4 +80,12 @@ public class OrderDTO {
     public void setProducts(List<ProductDTO> products) {
         this.products = new LinkedList<>(products);
     }
+
+    public List<Integer> getProductsId() {
+        List<Integer> productIds = new LinkedList<>();
+        for (ProductDTO product : products) {
+            productIds.add(product.getCode());
+        }
+        return productIds;
+    }
 }

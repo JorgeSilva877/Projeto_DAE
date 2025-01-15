@@ -17,7 +17,7 @@ public class VolumeBean {
 private static final Logger logger = Logger.getLogger("VolumeBean.logger");
 
 
-    public Volume find(int id) {
+    public Volume find(long id) {
         var volume = entityManager.find(Volume.class, id);
         if (volume == null) {
             throw new RuntimeException("Volume not found");

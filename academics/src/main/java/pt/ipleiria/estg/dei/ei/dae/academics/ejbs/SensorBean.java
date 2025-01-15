@@ -4,6 +4,7 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.Product;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Sensor;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Volume;
 import pt.ipleiria.estg.dei.ei.dae.academics.exceptions.MyEntityExistsException;
@@ -34,6 +35,11 @@ public class SensorBean {
         }
         sensor = new Sensor(id, type, volume);
         entityManager.persist(sensor);
+    }
+
+    public List<Sensor> findAll() {
+        // remember, maps to: “SELECT s FROM Sensor”
+        return entityManager.createNamedQuery("getAllSensors",Sensor.class).getResultList();
     }
 
 }

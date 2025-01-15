@@ -1,4 +1,5 @@
 package pt.ipleiria.estg.dei.ei.dae.academics.dtos;
 
-public class ClientDTO {
+public class ClientDTO extends UserDTO {
+
 }

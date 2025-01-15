@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Client;
+import pt.ipleiria.estg.dei.ei.dae.academics.exceptions.MyEntityNotFoundException;
 
 import java.util.List;
 
@@ -22,5 +23,13 @@ public class ClientBean {
         }
         var client = new Client(username, password, name, mail);
         entityManager.persist(client);
+    }
+
+    public Client find(String username){
+        var cliente = entityManager.find(Client.class,username);
+        if(cliente == null){
+            throw new MyEntityNotFoundException("username not found");
+        }
+        return cliente;
     }
 }
