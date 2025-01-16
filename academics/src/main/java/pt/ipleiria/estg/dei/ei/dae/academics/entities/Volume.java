@@ -22,15 +22,18 @@ public class Volume {
     private Sensor sensor;
     @Version
     private int version;
+    @OneToOne (mappedBy = "volume")
+    private ProductAmount productAmount;
 
     public Volume() {
     }
 
-    public Volume(int id) {
+    public Volume(int id, ProductAmount productAmount) {
         this.id = id;
         this.employee = null;
         this.sensor = null;
         this.isOk = true;
+        this.productAmount = productAmount;
     }
 
     public int getId() {
@@ -82,5 +85,13 @@ public class Volume {
 
     public void addEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public ProductAmount getProductAmount() {
+        return productAmount;
+    }
+
+    public void setProductAmount(ProductAmount productAmount) {
+        this.productAmount = productAmount;
     }
 }

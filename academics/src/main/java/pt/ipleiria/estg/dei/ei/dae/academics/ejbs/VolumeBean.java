@@ -5,9 +5,7 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Lob;
 import jakarta.persistence.PersistenceContext;
-import pt.ipleiria.estg.dei.ei.dae.academics.entities.Employee;
-import pt.ipleiria.estg.dei.ei.dae.academics.entities.Sensor;
-import pt.ipleiria.estg.dei.ei.dae.academics.entities.Volume;
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.*;
 import pt.ipleiria.estg.dei.ei.dae.academics.exceptions.MyEntityNotFoundException;
 
 import java.util.List;
@@ -18,14 +16,21 @@ public class VolumeBean {
     @PersistenceContext
     private EntityManager entityManager;
 
+
     private static final Logger logger = Logger.getLogger("VolumeBean.logger");
 
-    public void create(int id){
+    public void create(int id, long productAmmountId){
         var volume = entityManager.find(Volume.class, id);
         if (volume != null) {
             throw new RuntimeException("Volume already exists");
         }
-        volume = new Volume(id);
+
+        var productAmount = entityManager.find(ProductAmount.class, productAmmountId);
+        if (productAmount == null) {
+            throw new RuntimeException("productAmount doesnt exists");
+        }
+
+        volume = new Volume(id, productAmount);
         entityManager.persist(volume);
     }
 
@@ -36,6 +41,27 @@ public class VolumeBean {
         }
         return volume;
     }
+
+//    public long findLastId() {
+//        List<Volume> lista = entityManager.createNamedQuery("getAllVolums", Volume.class).getResultList();
+//        long aux = 0;
+//        for(Volume volume : lista) {
+//            if(volume.getId() > aux){
+//                aux = volume.getId();
+//            }
+//        }
+//        return aux;
+//    }
+
+    public int findLastId() {
+        return entityManager.createNamedQuery("getAllVolums", Volume.class)
+                .getResultList()
+                .stream()
+                .mapToInt(Volume::getId)
+                .max()
+                .orElse(0);
+    }
+
 
     public List<Volume> findAll() {
         return entityManager.createNamedQuery("getAllVolums", Volume.class).getResultList();

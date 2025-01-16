@@ -47,17 +47,16 @@ public class ConfigBean {
             employeeBean.create("John","123","John","john@gmail.com");
             sensorBean.create(1,"Temperature");
             sensorBean.create(2,"Humidity");
-            volumeBean.create(1);
-            volumeBean.create(2);
-            volumeBean.enrrollEmployeeInVolume(1,"John");
-            volumeBean.enrollSensorInVolume(1,1);
+            //volumeBean.create(1);
+            //volumeBean.create(2);
 
             List<ProductAmount> produtos = new LinkedList<>();
             produtos.add(new ProductAmount(1L, 1, 2));
 
-
             orderBean.create(1,"Mariozin","Rua almirante candido dos reis",10, produtos);
 
+            volumeBean.enrrollEmployeeInVolume(1,"John");
+            volumeBean.enrollSensorInVolume(1,1);
 
         }
         catch (Exception e) {

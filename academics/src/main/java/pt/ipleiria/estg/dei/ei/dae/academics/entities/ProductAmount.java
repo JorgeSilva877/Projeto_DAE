@@ -2,6 +2,7 @@ package pt.ipleiria.estg.dei.ei.dae.academics.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class ProductAmount {
@@ -9,6 +10,8 @@ public class ProductAmount {
     private long code;
     private int productId;
     private int amount;
+    @OneToOne
+    private Volume volume;
 
     public ProductAmount() {
     }
@@ -17,6 +20,7 @@ public class ProductAmount {
         this.code = code;
         this.productId = productId;
         this.amount = amount;
+        this.volume = null;
     }
 
     public int getAmount() {
@@ -41,5 +45,17 @@ public class ProductAmount {
 
     public void setId(long id) {
         this.code = id;
+    }
+
+    public void setCode(long code) {
+        this.code = code;
+    }
+
+    public Volume getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Volume volume) {
+        this.volume = volume;
     }
 }

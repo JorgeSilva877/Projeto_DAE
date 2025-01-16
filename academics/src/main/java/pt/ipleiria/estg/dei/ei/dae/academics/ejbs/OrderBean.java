@@ -6,10 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import pt.ipleiria.estg.dei.ei.dae.academics.dtos.ProductDTO;
-import pt.ipleiria.estg.dei.ei.dae.academics.entities.Client;
-import pt.ipleiria.estg.dei.ei.dae.academics.entities.Order;
-import pt.ipleiria.estg.dei.ei.dae.academics.entities.Product;
-import pt.ipleiria.estg.dei.ei.dae.academics.entities.ProductAmount;
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.*;
 import pt.ipleiria.estg.dei.ei.dae.academics.exceptions.MyEntityNotFoundException;
 
 import java.util.List;
@@ -21,10 +18,11 @@ public class OrderBean {
     private EntityManager entityManager;
     @EJB
     private ClientBean clientBean;
+    @EJB
+    private VolumeBean volumeBean;
 
     public void create(int code, String usernameCliente, String morada, float precoTotal, List<ProductAmount> products) {
 
-        //falta fazer o find do cliente para confirmar que existe
         var cliente = clientBean.find(usernameCliente);
         if (cliente == null) {
             throw new MyEntityNotFoundException("Client" + cliente + " does not exist"); //comentei para testar por n termos nenhum ainda
@@ -34,6 +32,15 @@ public class OrderBean {
         entityManager.persist(order);
 
         //falta ainda criar depois os volumes a partir daqui
+        int id = volumeBean.findLastId();
+
+        for(ProductAmount p : products) {
+            id++;
+            volumeBean.create(id, p.getCode());
+            Volume volume = volumeBean.find(id);
+            p.setVolume(volume);
+        }
+
     }
 
     public Order find(int code) {
