@@ -34,7 +34,7 @@ public class Order {
 //            )
 //    )
 //    private List<Product> products;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
     private List<ProductAmount> products;
     @NotBlank

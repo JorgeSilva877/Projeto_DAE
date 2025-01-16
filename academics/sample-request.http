@@ -11,7 +11,7 @@ POST http://localhost:8080/academics/api/product/
 Content-Type: application/json
 
 {
-  "code": 2,
+  "code": 3,
   "name": "Product 1",
   "category": "Category 1",
   "limite": "15",
@@ -41,6 +41,25 @@ Content-Type: application/json
 {
   "id" : 2,
   "employeeUsername" : "John"
+}
+
+
+### POST ORDER
+POST http://localhost:8080/academics/api/order
+Content-Type: application/json
+
+{
+  "code": 3,
+  "usernameClient": "Mariozin",
+  "morada": "Rua do Cardal",
+  "precoTotal": 44.0,
+  "products": [
+    {
+      "code": 5,
+      "productId": 1,
+      "amount": 7
+    }
+  ]
 }
 
 

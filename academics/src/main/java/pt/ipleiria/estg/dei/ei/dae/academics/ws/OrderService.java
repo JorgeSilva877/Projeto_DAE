@@ -33,7 +33,7 @@ public class OrderService {
     public Response create(OrderDTO orderDTO) throws MyEntityNotFoundException {
         orderBean.create(
                 orderDTO.getCode(),
-                orderDTO.getClient(),
+                orderDTO.getUsernameClient(),
                 orderDTO.getMorada(),
                 orderDTO.getPrecoTotal(),
                 orderDTO.getProductsService()

@@ -42,7 +42,7 @@ public class ConfigBean {
             warehouseBean.create(1);
             productBean.create(1, "Chocolate", "Comida", "10", 50, 2.79, 1 );
             productBean.create(2, "Salsa", "Comida", "5", 500, 1.01, 1 );
-            clientBean.create("Mario","123","Camelo","ReiDoGado@gmail.com");
+            clientBean.create("Mariozin","123","Camelo","ReiDoGado@gmail.com");
             managerBean.create("Laura01","123","Laura","laurinha@gmail.com");
             employeeBean.create("John","123","John","john@gmail.com");
             sensorBean.create(1,"Temperature");
@@ -51,12 +51,12 @@ public class ConfigBean {
             volumeBean.create(2);
             volumeBean.enrrollEmployeeInVolume(1,"John");
             volumeBean.enrollSensorInVolume(1,1);
-            var cliente = clientBean.find("Mario");
+
             List<ProductAmount> produtos = new LinkedList<>();
             produtos.add(new ProductAmount(1L, 1, 2));
 
 
-            orderBean.create(1,cliente,"Rua almirante candido dos reis",10, produtos);
+            orderBean.create(1,"Mariozin","Rua almirante candido dos reis",10, produtos);
 
 
         }

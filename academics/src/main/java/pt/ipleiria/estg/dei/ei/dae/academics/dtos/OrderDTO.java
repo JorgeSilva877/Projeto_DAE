@@ -11,7 +11,7 @@ import java.util.List;
 
 public class OrderDTO {
     private int code;
-    private Client client;
+    private String usernameClient;
     private String morada;
     private float precoTotal;
     private List<ProductAmountDTO> products;
@@ -20,9 +20,9 @@ public class OrderDTO {
         this.products = new LinkedList<>();
     }
 
-    public OrderDTO(int code, Client client, String morada, float precoTotal, List<ProductAmountDTO> products) {
+    public OrderDTO(int code, String usernameClient, String morada, float precoTotal, List<ProductAmountDTO> products) {
         this.code = code;
-        this.client = client;
+        this.usernameClient = usernameClient;
         this.morada = morada;
         this.precoTotal = precoTotal;
         this.products = new LinkedList<>(products);
@@ -31,7 +31,7 @@ public class OrderDTO {
     public static OrderDTO from(Order order) {
         return new OrderDTO(
                 order.getCode(),
-                order.getClient(),
+                order.getClient().getUsername(),
                 order.getMorada(),
                 order.getPrecoTotal(),
                 ProductAmountDTO.from(order.getProducts())
@@ -50,12 +50,12 @@ public class OrderDTO {
         this.code = code;
     }
 
-    public Client getClient() {
-        return client;
+    public String getUsernameClient() {
+        return usernameClient;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setUsernameClient(String usernameClient) {
+        this.usernameClient = usernameClient;
     }
 
     public String getMorada() {
