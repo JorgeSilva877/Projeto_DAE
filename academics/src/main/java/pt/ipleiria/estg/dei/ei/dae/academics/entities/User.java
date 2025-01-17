@@ -18,6 +18,8 @@ public class User {
     private String email;
     @Version
     private int version;
+    @Column(name = "dtype", insertable = false, updatable = false) // Somente leitura
+    private String dtype;
 
     public User() {
     }
@@ -59,5 +61,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getDtype() {
+        return dtype;
+    }
+
+    public void setDtype(String dtype) {
+        this.dtype = dtype;
     }
 }
