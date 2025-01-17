@@ -32,7 +32,6 @@ public class ProductService {
     @Path("/")
     public Response create(ProductDTO productDTO) {
         productBean.create(
-                productDTO.getCode(),
                 productDTO.getName(),
                 productDTO.getCategory(),
                 productDTO.getLimite(),

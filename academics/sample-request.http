@@ -19,10 +19,9 @@ Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczN
 ### POST PRODUCT
 POST http://localhost:8080/academics/api/product/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczNzE1NDQ3OSwiZXhwIjoxNzM3MTU4MDc5fQ.8WpXbke5CouEt4ffCin_FpKUvXEYeknFU0Jd2_2-9z0swgmIJSINKNi2Av4g8CAv
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJMYXVyYTAxIiwiaWF0IjoxNzM3MTU1OTExLCJleHAiOjE3MzcxNTk1MTF9.fVNdSSypgSPAo2i0BSBqp9SFH-WATuzyzzSgGz9otoz2AofbSqUh9Dy767nkViYu
 
 {
-  "code": 3,
   "name": "Product 1",
   "category": "Category 1",
   "limite": "15",

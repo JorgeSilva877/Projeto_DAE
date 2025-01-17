@@ -40,8 +40,8 @@ public class ConfigBean {
 
         try {
             warehouseBean.create(1);
-            productBean.create(1, "Chocolate", "Comida", 10, 50, 2.79, 1 );
-            productBean.create(2, "Salsa", "Comida", 5, 500, 1.01, 1 );
+            productBean.create("Chocolate", "Comida", 10, 50, 2.79, 1 );
+            productBean.create("Salsa", "Comida", 5, 500, 1.01, 1 );
             clientBean.create("Mariozin","123","Camelo","ReiDoGado@gmail.com");
             managerBean.create("Laura01","123","Laura","laurinha@gmail.com");
             employeeBean.create("John","123","John","john@gmail.com");
