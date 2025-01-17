@@ -62,4 +62,11 @@ Content-Type: application/json
   ]
 }
 
+###PATCH VALUE
+PATCH http://localhost:8080/academics/api/sensor/1
+Content-Type: application/json
+
+{
+  "valor": 15
+}
 

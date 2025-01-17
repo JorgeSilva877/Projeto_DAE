@@ -42,8 +42,9 @@ public class SensorService {
 
     @PATCH
     @Path("/{id}")
-    public void updateValor(@PathParam("id") int id, SensorDTO sensorDTO) {
+    public Response updateValor(@PathParam("id") int id, SensorDTO sensorDTO) {
         sensorBean.updateValue(id, sensorDTO.getValor());
+        return Response.ok().build();
     }
 
 }

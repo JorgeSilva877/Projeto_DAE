@@ -25,7 +25,7 @@ public class ClientBean {
         entityManager.persist(client);
     }
 
-    public Client find(String username){
+    public Client find(String username) throws MyEntityNotFoundException {
         var cliente = entityManager.find(Client.class,username);
         if(cliente == null){
             throw new MyEntityNotFoundException("username not found");
