@@ -31,15 +31,14 @@ public class OrderService {
     @POST
     @Path("/")
     public Response create(OrderDTO orderDTO) throws MyEntityNotFoundException {
-        orderBean.create(
-                orderDTO.getCode(),
-                orderDTO.getUsernameClient(),
-                orderDTO.getMorada(),
-                orderDTO.getPrecoTotal(),
-                orderDTO.getProductsService()
-        );
+        int code = orderBean.create(
+                    orderDTO.getUsernameClient(),
+                    orderDTO.getMorada(),
+                    orderDTO.getPrecoTotal(),
+                    orderDTO.getProductsService()
+                    );
 
-        Order order = orderBean.find(orderDTO.getCode());
+        Order order = orderBean.find(code);
         return Response.status(Response.Status.CREATED)
                 .entity(OrderDTO.from(order))
                 .build();

@@ -23,12 +23,14 @@ public class OrderBean {
     @EJB
     private EmailBean emailBean;
 
-    public void create(int code, String usernameCliente, String morada, float precoTotal, List<ProductAmount> products) {
+    public int create(String usernameCliente, String morada, float precoTotal, List<ProductAmount> products) {
 
         var cliente = clientBean.find(usernameCliente);
         if (cliente == null) {
             throw new MyEntityNotFoundException("Client" + cliente + " does not exist"); //comentei para testar por n termos nenhum ainda
         }
+
+        int code = findLastId() + 1;
 
         var order = new Order(code, cliente, morada, precoTotal, products);
         var orderCode = order.getCode();
@@ -48,6 +50,7 @@ public class OrderBean {
         var emailClient = clientBean.find(usernameCliente).getEmail();
         emailBean.send(emailClient, "Order", "Thanks for your order with code: " + orderCode + ", your order is being processed");
 
+        return code;
     }
 
     public Order find(int code) {
@@ -60,6 +63,15 @@ public class OrderBean {
 
     public List<Order> findAll() {
         return entityManager.createNamedQuery("getAllOrders", Order.class).getResultList();
+    }
+
+    public int findLastId() {
+        return entityManager.createNamedQuery("getAllOrders", Order.class)
+                .getResultList()
+                .stream()
+                .mapToInt(Order::getCode)
+                .max()
+                .orElse(0);
     }
 
 }

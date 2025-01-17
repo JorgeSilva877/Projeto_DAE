@@ -1,12 +1,11 @@
 package pt.ipleiria.estg.dei.ei.dae.academics.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 @Entity
 public class ProductAmount {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long code;
     private int productId;
     private int amount;
@@ -16,8 +15,7 @@ public class ProductAmount {
     public ProductAmount() {
     }
 
-    public ProductAmount(long code, int productId, int amount) {
-        this.code = code;
+    public ProductAmount(int productId, int amount) {
         this.productId = productId;
         this.amount = amount;
         this.volume = null;

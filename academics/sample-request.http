@@ -25,15 +25,6 @@ GET http://localhost:8080/academics/api/volume/
 Accept: application/json
 
 
-### Enroll Sensor in Volume (obsuleto de momento)
-POST http://localhost:8080/academics/api/volume/enrollSensor
-Content-Type: application/json
-
-{
-  "id" : 2,
-  "sensorId" : 2
-}
-
 ### Enroll Employee in Volume
 POST http://localhost:8080/academics/api/volume/enrollEmployee
 Content-Type: application/json
@@ -49,13 +40,11 @@ POST http://localhost:8080/academics/api/order
 Content-Type: application/json
 
 {
-  "code": 4,
   "usernameClient": "Mariozin",
   "morada": "Rua do Cardal",
   "precoTotal": 44.0,
   "products": [
     {
-      "code": 6,
       "productId": 1,
       "amount": 7
     }

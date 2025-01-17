@@ -82,11 +82,10 @@ public class OrderDTO {
         this.products = new LinkedList<>(products);
     }
 
-    //posso fazer isto?
     public List<ProductAmount> getProductsService() {
         LinkedList<ProductAmount> productsService = new LinkedList<>();
         for (ProductAmountDTO productAmountDTO : products) {
-            productsService.add(new ProductAmount(productAmountDTO.getCode(), productAmountDTO.getProductId(), productAmountDTO.getAmount()));
+            productsService.add(new ProductAmount(productAmountDTO.getProductId(), productAmountDTO.getAmount()));
         }
 
         return productsService;
