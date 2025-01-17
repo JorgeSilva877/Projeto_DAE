@@ -36,9 +36,10 @@ public class OrderBean {
 
         for(ProductAmount p : products) {
             id++;
-            volumeBean.create(id, p.getCode());
+            volumeBean.create(id, p.getCode(), order);
             Volume volume = volumeBean.find(id);
             p.setVolume(volume);
+            order.addVolume(volume);
         }
 
     }

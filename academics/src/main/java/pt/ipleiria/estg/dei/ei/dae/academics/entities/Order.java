@@ -21,19 +21,6 @@ public class Order {
     private Client client;
     private String morada;
     private float precoTotal;
-//    @ManyToMany
-//    @JoinTable(
-//            name = "order_product",
-//            joinColumns = @JoinColumn(
-//                    name = "order_code",
-//                    referencedColumnName = "code"
-//            ),
-//            inverseJoinColumns = @JoinColumn(
-//                    name = "product_code",
-//                    referencedColumnName = "code"
-//            )
-//    )
-//    private List<Product> products;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
     private List<ProductAmount> products;
@@ -41,6 +28,8 @@ public class Order {
     private String estado;
     @Version
     private int version;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Volume> volumes;
 
     public Order() {
         this.products = new LinkedList<>();
@@ -53,6 +42,7 @@ public class Order {
         this.precoTotal = precoTotal;
         this.products = new LinkedList<>(products);
         this.estado = "Por empacotar";
+        this.volumes = new LinkedList<>();
     }
 
     public int getCode() {
@@ -103,7 +93,31 @@ public class Order {
         this.products.remove(product);
     }
 
-//    public void calculateTotalPrice() {
+    public List<Volume> getVolumes() {
+        return volumes;
+    }
+
+    public void setVolumes(List<Volume> volumes) {
+        this.volumes = volumes;
+    }
+
+    public @NotBlank String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(@NotBlank String estado) {
+        this.estado = estado;
+    }
+
+    public void addVolume(Volume volume) {
+        this.volumes.add(volume);
+    }
+
+    public void removeVolume(Volume volume) {
+        this.volumes.remove(volume);
+    }
+
+    //    public void calculateTotalPrice() {
 //        float total = 0;
 //        for (ProductAmount product : products) {
 //            total += product.getPrice();

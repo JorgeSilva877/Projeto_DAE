@@ -19,7 +19,7 @@ public class VolumeBean {
 
     private static final Logger logger = Logger.getLogger("VolumeBean.logger");
 
-    public void create(int id, long productAmmountId){
+    public void create(int id, long productAmmountId, Order order){
         var volume = entityManager.find(Volume.class, id);
         if (volume != null) {
             throw new RuntimeException("Volume already exists");
@@ -30,7 +30,7 @@ public class VolumeBean {
             throw new RuntimeException("productAmount doesnt exists");
         }
 
-        volume = new Volume(id, productAmount);
+        volume = new Volume(id, productAmount, order);
         entityManager.persist(volume);
     }
 
@@ -78,6 +78,16 @@ public class VolumeBean {
         }
         volume.addEmployee(employee);
         employee.addVolume(volume);
+
+        var order = volume.getOrder();
+        for (Volume volumeOrder : order.getVolumes()){
+            if (volumeOrder.getEmployee() == null){
+                return;
+            }
+        }
+
+        order.setEstado("Empacotada e enviada!");
+
     }
 
     public void enrollSensorInVolume(int sensor_id, int volume_id) throws MyEntityNotFoundException {

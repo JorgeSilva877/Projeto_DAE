@@ -24,16 +24,20 @@ public class Volume {
     private int version;
     @OneToOne (mappedBy = "volume")
     private ProductAmount productAmount;
+    @ManyToOne
+    private Order order;
+
 
     public Volume() {
     }
 
-    public Volume(int id, ProductAmount productAmount) {
+    public Volume(int id, ProductAmount productAmount, Order order) {
         this.id = id;
         this.employee = null;
         this.sensor = null;
         this.isOk = true;
         this.productAmount = productAmount;
+        this.order = order;
     }
 
     public int getId() {
@@ -93,5 +97,13 @@ public class Volume {
 
     public void setProductAmount(ProductAmount productAmount) {
         this.productAmount = productAmount;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }
