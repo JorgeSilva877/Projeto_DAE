@@ -8,6 +8,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Client;
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.Order;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Product;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.User;
 import pt.ipleiria.estg.dei.ei.dae.academics.exceptions.MyEntityNotFoundException;
@@ -45,5 +46,16 @@ public class ClientBean {
             throw new MyEntityNotFoundException("No clients found");
         }
         return entityManager.createNamedQuery("getAllClients", Client.class).getResultList();
+    }
+
+    public List<Order> findWithOrders(String username) throws MyEntityNotFoundException {
+        var client = find(username);
+        if(client == null){
+            throw new MyEntityNotFoundException("Client not found");
+        }
+        if(client.getOrders().isEmpty()){
+            throw new MyEntityNotFoundException("No orders found");
+        }
+        return client.getOrders();
     }
 }

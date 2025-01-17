@@ -1,5 +1,6 @@
 package pt.ipleiria.estg.dei.ei.dae.academics.ws;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.ejb.EJB;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -10,6 +11,7 @@ import pt.ipleiria.estg.dei.ei.dae.academics.ejbs.OrderBean;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Order;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Product;
 import pt.ipleiria.estg.dei.ei.dae.academics.exceptions.MyEntityNotFoundException;
+import pt.ipleiria.estg.dei.ei.dae.academics.security.Authenticated;
 
 import java.util.List;
 
@@ -22,6 +24,8 @@ public class OrderService {
     private OrderBean orderBean;
 
     @GET
+    @Authenticated
+    @RolesAllowed({"Manager"})
     @Path("/")
     public List<OrderDTO> getAllOrders() throws MyEntityNotFoundException {
         return OrderDTO.from(orderBean.findAll());
@@ -29,6 +33,8 @@ public class OrderService {
 
 
     @POST
+    @Authenticated
+    @RolesAllowed({"Client"})
     @Path("/")
     public Response create(OrderDTO orderDTO) throws MyEntityNotFoundException {
         int code = orderBean.create(

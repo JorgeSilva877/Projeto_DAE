@@ -1,4 +1,5 @@
 package pt.ipleiria.estg.dei.ei.dae.academics.dtos;
+import org.hibernate.Hibernate;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.User;
 import java.io.Serializable;
 import java.util.List;
@@ -27,7 +28,8 @@ public class UserDTO implements Serializable {
                 users.getPassword(),
                 users.getName(),
                 users.getEmail(),
-                users.getDtype()
+                //users.getDtype()
+                Hibernate.getClass(users).getSimpleName()
 
         );
     }
