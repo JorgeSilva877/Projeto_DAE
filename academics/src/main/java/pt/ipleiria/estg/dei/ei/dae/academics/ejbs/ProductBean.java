@@ -19,7 +19,7 @@ public class ProductBean {
     private WarehouseBean warehouseBean;
 
 
-    public void create(int code, String name, String category, String limite, int stock, double price, int idWarehouse) throws MyEntityNotFoundException, MyEntityExistsException {
+    public void create(int code, String name, String category, int limite, int stock, double price, int idWarehouse) throws MyEntityNotFoundException, MyEntityExistsException {
         var warehouse = warehouseBean.find(idWarehouse);
         if (warehouse == null) {
             throw new MyEntityNotFoundException("Warehouse" + warehouse + " does not exist"); //comentei para testar por n termos nenhum ainda
@@ -47,7 +47,7 @@ public class ProductBean {
         return produto;
     }
 
-    public Product update(int code, String name, String category, String limite, int stock, double price, int idWarehouse) {
+    public Product update(int code, String name, String category, int limite, int stock, double price, int idWarehouse) {
         var product = find(code);
         product.setName(name);
         product.setCategory(category);

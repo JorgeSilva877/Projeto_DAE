@@ -23,13 +23,27 @@ public class SensorBean {
 
     private static final Logger logger= Logger.getLogger(SensorBean.class.getName());
 
-    public void create(int id, String type) throws MyEntityNotFoundException, MyEntityExistsException {
-        var sensor = entityManager.find(Sensor.class, id);
-        if (sensor != null) {
-            throw new MyEntityExistsException("Esse sensor já existe!!");
+    public int create(String categoriaProduto) throws MyEntityNotFoundException, MyEntityExistsException {
+        int id = findLastId() + 1;
+
+        String type;
+
+        switch (categoriaProduto) {
+            case "Comida":
+                type = "Temperatura";
+                break;
+
+            case "Eletrodoméstico":
+                type = "Velocidade";
+                break;
+
+            default:
+                throw new MyEntityNotFoundException("Categoria não encontrada");
         }
-        sensor = new Sensor(id, type);
+
+        var sensor = new Sensor(id, type);
         entityManager.persist(sensor);
+        return id;
     }
 
     public List<Sensor> findAll() {
@@ -44,6 +58,7 @@ public class SensorBean {
         }
         return sensor;
     }
+
     public void updateValue(int id, int valor) throws MyEntityNotFoundException {
         var sensor = entityManager.find(Sensor.class, id);
         if (sensor == null) {
@@ -73,6 +88,15 @@ public class SensorBean {
             emailBean.send(clientEmail, "Order", "The order with code:" + orderCode + " has returned to our facilities due to an issue. The money will be refunded. If you wish, you can place the order again through our website! I apologize for the inconvenience. ");
         }
 
+    }
+
+    public int findLastId() {
+        return entityManager.createNamedQuery("getAllSensors", Sensor.class)
+                .getResultList()
+                .stream()
+                .mapToInt(Sensor::getId)
+                .max()
+                .orElse(0);
     }
 }
 

@@ -20,7 +20,7 @@ public class Product {
     private String name;
     @NotBlank
     private String category;
-    @NotBlank
+    @NotNull
     private int limite; // valor ao qual o produto se estraga
     @NotNull
     private int stock;

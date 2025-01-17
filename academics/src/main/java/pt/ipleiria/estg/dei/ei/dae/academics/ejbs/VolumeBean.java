@@ -42,17 +42,6 @@ public class VolumeBean {
         return volume;
     }
 
-//    public long findLastId() {
-//        List<Volume> lista = entityManager.createNamedQuery("getAllVolums", Volume.class).getResultList();
-//        long aux = 0;
-//        for(Volume volume : lista) {
-//            if(volume.getId() > aux){
-//                aux = volume.getId();
-//            }
-//        }
-//        return aux;
-//    }
-
     public int findLastId() {
         return entityManager.createNamedQuery("getAllVolums", Volume.class)
                 .getResultList()

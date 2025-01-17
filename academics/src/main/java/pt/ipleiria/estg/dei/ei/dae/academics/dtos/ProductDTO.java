@@ -11,7 +11,7 @@ public class ProductDTO {
     private int code;
     private String name;
     private String category;
-    private String limite; // valor ao qual o produto se estraga
+    private int limite; // valor ao qual o produto se estraga
     private int stock;
     private double price;
     private int warehouseId;
@@ -19,7 +19,7 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-    public ProductDTO(int code, String name, String category, String limite, int stock, double price, int warehouseId) {
+    public ProductDTO(int code, String name, String category, int limite, int stock, double price, int warehouseId) {
         this.code = code;
         this.name = name;
         this.category = category;
@@ -69,11 +69,11 @@ public class ProductDTO {
         this.category = category;
     }
 
-    public String getLimite() {
+    public int getLimite() {
         return limite;
     }
 
-    public void setLimite(String limite) {
+    public void setLimite(int limite) {
         this.limite = limite;
     }
 

@@ -28,7 +28,6 @@ public class SensorService {
     @Path("/")
     public Response create(SensorDTO sensorDTO) {
         sensorBean.create(
-                sensorDTO.getId(),
                 sensorDTO.getType()
         );
         Sensor sensor = sensorBean.find(sensorDTO.getId());
