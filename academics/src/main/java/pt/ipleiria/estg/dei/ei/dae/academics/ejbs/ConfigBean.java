@@ -43,6 +43,7 @@ public class ConfigBean {
             productBean.create(1, "Chocolate", "Comida", "10", 50, 2.79, 1 );
             productBean.create(2, "Salsa", "Comida", "5", 500, 1.01, 1 );
             clientBean.create("Mariozin","123","Camelo","ReiDoGado@gmail.com");
+            clientBean.create("Joana", "123", "Joana", "joana@gmail.com");
             managerBean.create("Laura01","123","Laura","laurinha@gmail.com");
             employeeBean.create("John","123","John","john@gmail.com");
             sensorBean.create(1,"Temperature");

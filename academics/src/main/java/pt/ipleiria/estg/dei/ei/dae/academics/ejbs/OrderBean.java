@@ -20,6 +20,8 @@ public class OrderBean {
     private ClientBean clientBean;
     @EJB
     private VolumeBean volumeBean;
+    @EJB
+    private EmailBean emailBean;
 
     public void create(int code, String usernameCliente, String morada, float precoTotal, List<ProductAmount> products) {
 
@@ -41,6 +43,9 @@ public class OrderBean {
             p.setVolume(volume);
             order.addVolume(volume);
         }
+        //ENVIAR EMAIL
+        var emailClient = clientBean.find(usernameCliente).getEmail();
+        emailBean.send(emailClient, "Order", "Thanks for your order, your order is being processed");
 
     }
 

@@ -49,15 +49,15 @@ POST http://localhost:8080/academics/api/order
 Content-Type: application/json
 
 {
-  "code": 4,
-  "usernameClient": "Mariozin",
-  "morada": "Rua do Cardal",
-  "precoTotal": 44.0,
+  "code": 6,
+  "usernameClient": "Joana",
+  "morada": "Rua da Alegria",
+  "precoTotal": 5.05,
   "products": [
     {
-      "code": 6,
-      "productId": 1,
-      "amount": 7
+      "code": 7,
+      "productId": 2,
+      "amount": 5
     }
   ]
 }
