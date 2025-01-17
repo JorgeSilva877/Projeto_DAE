@@ -31,6 +31,7 @@ public class OrderBean {
         }
 
         var order = new Order(code, cliente, morada, precoTotal, products);
+        var orderCode = order.getCode();
         entityManager.persist(order);
 
         //falta ainda criar depois os volumes a partir daqui
@@ -45,7 +46,7 @@ public class OrderBean {
         }
         //ENVIAR EMAIL
         var emailClient = clientBean.find(usernameCliente).getEmail();
-        emailBean.send(emailClient, "Order", "Thanks for your order, your order is being processed");
+        emailBean.send(emailClient, "Order", "Thanks for your order with code: " + orderCode + ", your order is being processed");
 
     }
 

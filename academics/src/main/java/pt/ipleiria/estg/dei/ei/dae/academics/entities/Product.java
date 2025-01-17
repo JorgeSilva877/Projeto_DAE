@@ -21,7 +21,7 @@ public class Product {
     @NotBlank
     private String category;
     @NotBlank
-    private String limite; // valor ao qual o produto se estraga
+    private int limite; // valor ao qual o produto se estraga
     @NotNull
     private int stock;
     @NotNull
@@ -34,7 +34,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(int code, String name, String category, String limite, int stock, double price, Warehouse warehouse) {
+    public Product(int code, String name, String category, int limite, int stock, double price, Warehouse warehouse) {
         this.code = code;
         this.name = name;
         this.category = category;
@@ -93,11 +93,11 @@ public class Product {
         this.version = version;
     }
 
-    public String getLimite() {
+    public int getLimite() {
         return limite;
     }
 
-    public void setLimite(String limite) {
+    public void setLimite(int limite) {
         this.limite = limite;
     }
 
