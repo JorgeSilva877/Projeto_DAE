@@ -3,7 +3,7 @@ POST http://localhost:8080/academics/api/auth/login
 Content-Type: application/json
 Accept: application/json
 
-{ "username": "John", "password": "123" }
+{ "username": "Mariozin", "password": "123" }
 
 ### Get Authenticated User
 GET http://localhost:8080/academics/api/auth/user
@@ -81,8 +81,7 @@ Content-Type: application/json
 ###GET orders by client
 GET http://localhost:8080/academics/api/client/Mariozin/orders
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczNzIxMzYyNywiZXhwIjoxNzM3MjE3MjI3fQ.ehlwQl7EQviPIk2Xs_hPUFI6REkKwagNP7gck8oZWrT_KBMExGUPay_MZf_9nT8i
-
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczNzIyODAzMywiZXhwIjoxNzM3MjMxNjMzfQ.FAsRgkHmqTc2lhZrSnDxmIRBuT5YQiOO-2eR9B9FuV-VyFg89PU0uk4kF9NqqBhE
 
 
 ###PUT product

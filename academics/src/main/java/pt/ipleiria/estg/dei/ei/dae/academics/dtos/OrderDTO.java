@@ -13,6 +13,7 @@ public class OrderDTO {
     private int code;
     private String usernameClient;
     private String morada;
+    private String estado;
     private float precoTotal;
     private List<ProductAmountDTO> products;
 
@@ -20,12 +21,13 @@ public class OrderDTO {
         this.products = new LinkedList<>();
     }
 
-    public OrderDTO(int code, String usernameClient, String morada, float precoTotal, List<ProductAmountDTO> products) {
+    public OrderDTO(int code, String usernameClient, String morada, float precoTotal, List<ProductAmountDTO> products, String estado) {
         this.code = code;
         this.usernameClient = usernameClient;
         this.morada = morada;
         this.precoTotal = precoTotal;
         this.products = new LinkedList<>(products);
+        this.estado = estado;
     }
 
     public static OrderDTO from(Order order) {
@@ -34,7 +36,8 @@ public class OrderDTO {
                 order.getClient().getUsername(),
                 order.getMorada(),
                 order.getPrecoTotal(),
-                ProductAmountDTO.from(order.getProducts())
+                ProductAmountDTO.from(order.getProducts()),
+                order.getEstado()
         );
     }
 
@@ -91,7 +94,15 @@ public class OrderDTO {
         return productsService;
     }
 
-//    public List<Integer> getProductsId() {
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    //    public List<Integer> getProductsId() {
 //        List<Integer> productIds = new LinkedList<>();
 //        for (ProductAmountDTO product : products) {
 //            productIds.add(product.getProductId());
