@@ -31,7 +31,7 @@ public class ProductService {
     @RolesAllowed({"Manager"})
     @Path("/")
     public Response create(ProductDTO productDTO) {
-        productBean.create(
+        int code = productBean.create(
                 productDTO.getName(),
                 productDTO.getCategory(),
                 productDTO.getLimite(),
@@ -39,7 +39,7 @@ public class ProductService {
                 productDTO.getPrice(),
                 productDTO.getWarehouseId()
         );
-        Product product = productBean.find(productDTO.getCode());
+        Product product = productBean.find(code);
         return Response.status(Response.Status.CREATED)
                 .entity(ProductDTO.from(product))
                 .build();

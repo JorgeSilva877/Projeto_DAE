@@ -20,7 +20,7 @@ public class ProductBean {
     private WarehouseBean warehouseBean;
 
 
-    public void create(String name, String category, int limite, int stock, double price, int idWarehouse) throws MyEntityNotFoundException, MyEntityExistsException {
+    public int create(String name, String category, int limite, int stock, double price, int idWarehouse) throws MyEntityNotFoundException, MyEntityExistsException {
         var warehouse = warehouseBean.find(idWarehouse);
         if (warehouse == null) {
             throw new MyEntityNotFoundException("Warehouse" + warehouse + " does not exist"); //comentei para testar por n termos nenhum ainda
@@ -30,6 +30,8 @@ public class ProductBean {
 
         var product = new Product( code,  name,  category, limite, stock,  price, warehouse);
         entityManager.persist(product);
+
+        return code;
     }
 
     public List<Product> findAll() throws MyEntityNotFoundException {
