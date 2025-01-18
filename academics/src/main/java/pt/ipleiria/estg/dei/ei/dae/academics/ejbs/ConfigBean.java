@@ -40,11 +40,14 @@ public class ConfigBean {
 
         try {
             warehouseBean.create(1);
+            warehouseBean.create(2);
             productBean.create("Chocolate", "Comida", 10, 50, 2.79, 1 );
             productBean.create("Salsa", "Comida", 5, 500, 1.01, 1 );
+            productBean.create("Cerveja", "Comida", 10, 100, 1.99, 2 );
             clientBean.create("Mariozin","123","Camelo","ReiDoGado@gmail.com");
             managerBean.create("Laura01","123","Laura","laurinha@gmail.com");
-            employeeBean.create("John","123","John","john@gmail.com");
+            employeeBean.create("John","123","John","john@gmail.com",1 );
+            employeeBean.create("Mary","123","Mary","mary@gmail.com",2 );
             sensorBean.create("Comida");
             //volumeBean.create(1);
             //volumeBean.create(2);

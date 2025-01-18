@@ -65,8 +65,18 @@ public class VolumeBean {
         if (employee == null) {
             throw new RuntimeException("Employee not found");
         }
+
+        int warehouseIdEmp = employee.getWarehouse().getId();
+        int productId = volume.getProductAmount().getProductId();
+        int warehouseIdProd = entityManager.find(Product.class, productId).getWarehouse().getId();
+        if(warehouseIdEmp != warehouseIdProd){
+            throw new RuntimeException("Employee and product are not in the same warehouse");
+        }
+
         volume.addEmployee(employee);
         employee.addVolume(volume);
+        entityManager.merge(volume);
+        entityManager.merge(employee);
 
         var order = volume.getOrder();
         for (Volume volumeOrder : order.getVolumes()){
@@ -113,4 +123,16 @@ public class VolumeBean {
         entityManager.merge(volume);
     }
 
+    public List<Volume> findAllByWarehouseEmployee(int idWarehouseEmployee) {
+        List<Volume> volumes = entityManager.createNamedQuery("getAllVolums", Volume.class).getResultList();
+
+        for (Volume volume : volumes) {
+            ProductAmount productAmmount = volume.getProductAmount();
+            Product product = entityManager.find(Product.class, productAmmount.getProductId());
+            if(product.getWarehouse().getId() != idWarehouseEmployee || volume.getEmployee() != null){
+                volumes.remove(volume);
+            }
+        }
+        return volumes;
+    }
 }

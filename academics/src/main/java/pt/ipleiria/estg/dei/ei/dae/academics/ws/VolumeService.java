@@ -28,11 +28,17 @@ public class VolumeService {
     private ProductBean productBean;
 
     @GET
+    @RolesAllowed({"Manager"})
     @Path("/")
     public List<VolumeDTO> getAllVolumes() {
         return VolumeDTO.from(volumeBean.findAll());
     }
 
+    @GET
+    @Path("/{idWarehouseEmployee}")
+    public List<VolumeDTO> getAllVolumesByWarehouseEmployee(@PathParam("idWarehouseEmployee") int idWarehouseEmployee) {
+        return VolumeDTO.from(volumeBean.findAllByWarehouseEmployee(idWarehouseEmployee));
+    }
     @GET
     @Path("{id}")
     public VolumeDTO getVolume(@PathParam("id") int id) {

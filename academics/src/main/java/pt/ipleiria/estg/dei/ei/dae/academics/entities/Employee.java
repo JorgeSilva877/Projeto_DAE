@@ -18,14 +18,16 @@ import java.util.Vector;
 public class Employee extends User {
     @OneToMany (mappedBy = "employee")
     private List<Volume> volumes;
-
+    @ManyToOne
+    private Warehouse warehouse;
     public Employee() {
         this.volumes = new LinkedList<>();
     }
 
-    public Employee(String username, String password, String name, String email) {
+    public Employee(String username, String password, String name, String email, Warehouse warehouse) {
         super(username, password, name, email);
         this.volumes = new LinkedList<>();
+        this.warehouse = warehouse;
     }
 
     public List<Volume> getVolumes() {
@@ -38,5 +40,13 @@ public class Employee extends User {
 
     public void addVolume(Volume volume) {
         volumes.add(volume);
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
     }
 }

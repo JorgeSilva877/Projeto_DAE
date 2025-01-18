@@ -13,17 +13,19 @@ public class EmployeeDTO {
     private String name;
     private String email;
     private List<VolumeDTO> volumes;
+    private int warehouseId;
 
     public EmployeeDTO() {
        this.volumes = new LinkedList<>();
     }
 
-    public EmployeeDTO(String username, String password, String name, String email) {
+    public EmployeeDTO(String username, String password, String name, String email, int warehouseId) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
         this.volumes = new LinkedList<>();
+        this.warehouseId = warehouseId;
     }
 
     public static EmployeeDTO from(Employee employee) {
@@ -31,7 +33,8 @@ public class EmployeeDTO {
                 employee.getUsername(),
                 employee.getPassword(),
                 employee.getName(),
-                employee.getEmail()
+                employee.getEmail(),
+                employee.getWarehouse().getId()
         );
     }
 
@@ -77,5 +80,13 @@ public class EmployeeDTO {
 
     public void setVolumes(List<VolumeDTO> volumes) {
         this.volumes = new LinkedList<>(volumes);
+    }
+
+    public int getWarehouseId() {
+        return warehouseId;
+    }
+
+    public void setWarehouseId(int warehouseId) {
+        this.warehouseId = warehouseId;
     }
 }

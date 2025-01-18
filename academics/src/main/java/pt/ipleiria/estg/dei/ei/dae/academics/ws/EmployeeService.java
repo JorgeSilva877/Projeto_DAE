@@ -34,7 +34,8 @@ public class EmployeeService {
                 employeeDTO.getUsername(),
                 employeeDTO.getPassword(),
                 employeeDTO.getName(),
-                employeeDTO.getEmail()
+                employeeDTO.getEmail(),
+                employeeDTO.getWarehouseId()
         );
         return Response.ok().build();
     }

@@ -3,7 +3,7 @@ POST http://localhost:8080/academics/api/auth/login
 Content-Type: application/json
 Accept: application/json
 
-{ "username": "John", "password": "123" }
+{ "username": "Mary", "password": "123" }
 
 ### Get Authenticated User
 GET http://localhost:8080/academics/api/auth/user
@@ -33,23 +33,27 @@ Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczN
 ### GET VOLUMS
 GET http://localhost:8080/academics/api/volume/
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJMYXVyYTAxIiwiaWF0IjoxNzM3MTU1NjcxLCJleHAiOjE3MzcxNTkyNzF9.YCO0rakQAI5XIqSCWZupu3sYHm_WVfXQPfju0_kKPu0QZ1qEmSMG1OmQYg0lzZl6
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJMYXVyYTAxIiwiaWF0IjoxNzM3MjEzNTgxLCJleHAiOjE3MzcyMTcxODF9.YHrOOo37G4AnkOcB8HUG1FfL5Xe6QDsw1vyaoi3nZcssdVrTkEOo4wiA_Uc1Yr9a
+
+
+
 
 ### Enroll Employee in Volume
 POST http://localhost:8080/academics/api/volume/enrollEmployee
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJKb2huIiwiaWF0IjoxNzM3MjE0Njc0LCJleHAiOjE3MzcyMTgyNzR9.WmwwLigzIwhckderKz69P6gogN_VSRye2G2DlapKOgRN3DGBJJhPNIji3uqbYEFj
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJ5IiwiaWF0IjoxNzM3MjE1ODk1LCJleHAiOjE3MzcyMTk0OTV9.PwoKWu5-u4wMoRKJLXUiyD8tj-MhetKnFsurGfj1ry7dMgy5-rKFJTzdaFZXeJvZ
+
 
 {
   "id" : 2,
-  "employeeUsername" : "John"
+  "employeeUsername" : "Mary"
 }
 
 
 ### POST ORDER
 POST http://localhost:8080/academics/api/order
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczNzIxNDYxMiwiZXhwIjoxNzM3MjE4MjEyfQ.3pljxHLJ7tS0PUP8ztDUaPIdWJtrD0LvkmOmsIU1fGlCVHpNvGobkKAz20BQlOmd
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczNzIxMzUwOCwiZXhwIjoxNzM3MjE3MTA4fQ.oWluxU6JK0FvmMh4-fRAmfq7T89cZuw30V7h7L8sTjoiE3vVBWVvhTPgQ_Y2yo7E
 
 {
   "usernameClient": "Mariozin",
@@ -57,7 +61,7 @@ Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczN
   "precoTotal": 44.0,
   "products": [
     {
-      "productId": 1,
+      "productId": 3,
       "amount": 7
     }
   ]
@@ -75,7 +79,8 @@ Content-Type: application/json
 ###GET orders by client
 GET http://localhost:8080/academics/api/client/Mariozin/orders
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczNzIxMDc2NCwiZXhwIjoxNzM3MjE0MzY0fQ.5e5mJ0d0bBbkT3YqMG8Rc2K8sMM3IMjusK2f3GuIH_hhlFGhBHNQoaQTnfH5ysQs
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczNzIxMzYyNywiZXhwIjoxNzM3MjE3MjI3fQ.ehlwQl7EQviPIk2Xs_hPUFI6REkKwagNP7gck8oZWrT_KBMExGUPay_MZf_9nT8i
+
 
 
 ###PUT product
@@ -91,3 +96,7 @@ Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJMYXVyYTAxIiwiaWF0IjoxNzM3M
     "price": 199.99,
     "warehouseId": 1
 }
+###GET volums by warehouseIdEmployee
+GET http://localhost:8080/academics/api/volume/2
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJ5IiwiaWF0IjoxNzM3MjE1MTExLCJleHAiOjE3MzcyMTg3MTF9.Vqi9dr5V7IJ9dsOrb5e4RxVYP6KVgi8RRVFl3RjiBFW78xF5ZSF5Yn48kqGwVKrU

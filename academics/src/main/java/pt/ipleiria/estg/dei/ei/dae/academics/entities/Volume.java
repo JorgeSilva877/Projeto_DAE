@@ -2,6 +2,8 @@ package pt.ipleiria.estg.dei.ei.dae.academics.entities;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import jdk.jfr.Name;
+
 @Entity
 @NamedQueries({
         @NamedQuery(
