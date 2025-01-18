@@ -84,7 +84,7 @@ public class SensorBean {
 
         if(valor > limit){
             volume.setOk(false);
-            order.setEstado("Devolvida (danos a entregar)");
+            order.setEstado("Devolvida (danos ao entregar)");
             emailBean.send(clientEmail, "Order", "The order with code:" + orderCode + " has returned to our facilities due to an issue. The money will be refunded. If you wish, you can place the order again through our website! I apologize for the inconvenience. ");
         }
 

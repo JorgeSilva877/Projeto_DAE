@@ -113,4 +113,5 @@ Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJMYXVyYTAxIiwiaWF0IjoxNzM3M
 ###GET EMPLOY
 GET http://localhost:8080/academics/api/employee/John
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJKb2huIiwiaWF0IjoxNzM3MjI2OTk0LCJleHAiOjE3MzcyMzA1OTR9.zfqQNmucSFhd0aS1kRGwnqy8Dx12cB5-RENQAQxX6--o_qtVNGot4XtfyDxBeJ-W
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJKb2huIiwiaWF0IjoxNzM3MjI3MzgwLCJleHAiOjE3MzcyMzA5ODB9.ZWH5lc8SRo_nozrXicg8R7rAlRiKaPBqTRRbBwH1h1K8SPakD8bIy95cTGJFF0Of
+

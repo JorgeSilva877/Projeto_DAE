@@ -16,13 +16,15 @@ import java.util.List;
 @Path("employee") // relative url web path for this service
 @Produces({MediaType.APPLICATION_JSON}) // injects header “Content-Type: application/json”
 @Consumes({MediaType.APPLICATION_JSON}) // injects header “Accept: application/json”
-@RolesAllowed({"Manager"})
+@Authenticated
+@RolesAllowed({"Manager", "Employee"})
 public class EmployeeService {
     @EJB
     private EmployeeBean employeeBean;
 
     @GET
     @Authenticated
+    @RolesAllowed({"Manager"})
     @Path("/")
     public List<EmployeeDTO> getAllEmployees() {
         return EmployeeDTO.from(employeeBean.findAll());
@@ -30,6 +32,7 @@ public class EmployeeService {
 
     @POST
     @Authenticated
+    @RolesAllowed({"Manager"})
     @Path("/")
     public Response createEmployee(EmployeeDTO employeeDTO) {
         employeeBean.create(
@@ -43,6 +46,7 @@ public class EmployeeService {
     }
 
     @GET
+    @Authenticated
     @Path("/{username}")
     public EmployeeDTO getEmploy(@PathParam("username") String username) {
         return EmployeeDTO.from(employeeBean.find(username));
@@ -50,6 +54,7 @@ public class EmployeeService {
 
 
     @GET
+    @Authenticated
     @Path("/{idWarehouseEmployee}/volumes")
     public List<VolumeDTO> getAllVolumesByWarehouseEmployee(@PathParam("idWarehouseEmployee") int idWarehouseEmployee) {
         return VolumeDTO.from(employeeBean.findAllByWarehouseEmployee(idWarehouseEmployee));
