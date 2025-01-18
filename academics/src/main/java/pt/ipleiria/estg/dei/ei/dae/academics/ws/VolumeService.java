@@ -35,11 +35,6 @@ public class VolumeService {
     }
 
     @GET
-    @Path("/{idWarehouseEmployee}")
-    public List<VolumeDTO> getAllVolumesByWarehouseEmployee(@PathParam("idWarehouseEmployee") int idWarehouseEmployee) {
-        return VolumeDTO.from(volumeBean.findAllByWarehouseEmployee(idWarehouseEmployee));
-    }
-    @GET
     @Path("{id}")
     public VolumeDTO getVolume(@PathParam("id") int id) {
         return VolumeDTO.from(volumeBean.find(id));
@@ -76,7 +71,5 @@ public class VolumeService {
 
         return Response.ok().build();
     }
-
-
 
 }

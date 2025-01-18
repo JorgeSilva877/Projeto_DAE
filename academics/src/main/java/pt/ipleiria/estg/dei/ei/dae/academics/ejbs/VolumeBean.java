@@ -5,6 +5,7 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Lob;
 import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.*;
 import pt.ipleiria.estg.dei.ei.dae.academics.exceptions.MyEntityNotFoundException;
 
@@ -57,36 +58,65 @@ public class VolumeBean {
     }
 
     public void enrrollEmployeeInVolume(int volume_id, String username) {
+        // Encontrar o Volume
         var volume = entityManager.find(Volume.class, volume_id);
         if (volume == null) {
             throw new RuntimeException("Volume not found");
         }
+        System.out.println("Buscando volume com ID: " + volume.getId());
+
+        // Encontrar o Employee
         var employee = entityManager.find(Employee.class, username);
         if (employee == null) {
             throw new RuntimeException("Employee not found");
         }
+        System.out.println("Buscando employ com ID: " + employee.getUsername());
 
+        // Garantir que o Employee esteja gerenciado
+        employee = entityManager.merge(employee); // Isso já vai garantir que o Employee está no contexto de persistência
+        System.out.println("Teste 1");
+
+        // Verificar se o ProductAmount está associado ao Volume
+        var productAmount = volume.getProductAmount();
+        if (productAmount == null) {
+            throw new RuntimeException("ProductAmount is not associated with the volume");
+        }
+        System.out.println("Teste 2");
+
+        // Verificar se o Employee e o Product estão no mesmo armazém
         int warehouseIdEmp = employee.getWarehouse().getId();
-        int productId = volume.getProductAmount().getProductId();
+        System.out.println("Id warehouse: " + warehouseIdEmp);
+        int productId = productAmount.getProductId();
+        System.out.println("Id product: " + productId);
         int warehouseIdProd = entityManager.find(Product.class, productId).getWarehouse().getId();
-        if(warehouseIdEmp != warehouseIdProd){
+        System.out.println("Id warehouse 2: " + warehouseIdProd);
+        if (warehouseIdEmp != warehouseIdProd) {
             throw new RuntimeException("Employee and product are not in the same warehouse");
         }
+        System.out.println("Warehouses sao iguais");
 
-        volume.addEmployee(employee);
-        employee.addVolume(volume);
-        entityManager.merge(volume);
-        entityManager.merge(employee);
+        // Associa o Employee ao Volume
+        volume.setEmployee(employee);
+        System.out.println("TESTE 1");
+        employee.addVolume(volume); // Adiciona o Volume ao Employee
+        System.out.println("TESTE 2");
+        // Não é necessário chamar o entityManager.merge(volume) aqui, porque o Volume já está gerenciado
 
-        var order = volume.getOrder();
+        // Verificar o status do pedido
+        checkOrderCompletion(volume.getOrder());
+        System.out.println("TESTE 3");
+    }
+
+
+    @Transactional
+    public void checkOrderCompletion(Order order) {
         for (Volume volumeOrder : order.getVolumes()){
             if (volumeOrder.getEmployee() == null){
                 return;
             }
         }
-
         order.setEstado("Empacotada e enviada!");
-
+        entityManager.merge(order);
     }
 
     public void enrollSensorInVolume(int sensor_id, int volume_id) throws MyEntityNotFoundException {
@@ -123,16 +153,4 @@ public class VolumeBean {
         entityManager.merge(volume);
     }
 
-    public List<Volume> findAllByWarehouseEmployee(int idWarehouseEmployee) {
-        List<Volume> volumes = entityManager.createNamedQuery("getAllVolums", Volume.class).getResultList();
-
-        for (Volume volume : volumes) {
-            ProductAmount productAmmount = volume.getProductAmount();
-            Product product = entityManager.find(Product.class, productAmmount.getProductId());
-            if(product.getWarehouse().getId() != idWarehouseEmployee || volume.getEmployee() != null){
-                volumes.remove(volume);
-            }
-        }
-        return volumes;
-    }
 }

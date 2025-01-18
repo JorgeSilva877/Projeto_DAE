@@ -43,7 +43,7 @@ public class ConfigBean {
             warehouseBean.create(2);
             productBean.create("Chocolate", "Comida", 10, 50, 2.79, 1 );
             productBean.create("Salsa", "Comida", 5, 500, 1.01, 1 );
-            productBean.create("Cerveja", "Comida", 10, 100, 1.99, 2 );
+            productBean.create("Cerveja", "Comida", 10, 100, 1.99, 2);
             clientBean.create("Mariozin","123","Camelo","ReiDoGado@gmail.com");
             managerBean.create("Laura01","123","Laura","laurinha@gmail.com");
             employeeBean.create("John","123","John","john@gmail.com",1 );
@@ -54,6 +54,7 @@ public class ConfigBean {
 
             List<ProductAmount> produtos = new LinkedList<>();
             produtos.add(new ProductAmount(1, 2));
+            produtos.add(new ProductAmount(2, 2));
 
             orderBean.create("Mariozin","Rua almirante candido dos reis",10, produtos);
 

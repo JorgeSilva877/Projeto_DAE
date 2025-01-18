@@ -16,7 +16,7 @@ import jdk.jfr.Name;
 public class Volume {
     @Id
     private int id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Employee employee;
     private boolean isOk;
     @OneToOne (mappedBy = "volume")
@@ -51,9 +51,9 @@ public class Volume {
     }
 
     public Employee getEmployee() {
-        if(employee == null){
-            employee = new Employee();
-        }
+//        if(employee == null){
+//            employee = new Employee();
+//        }
         return employee;
     }
 
@@ -87,10 +87,6 @@ public class Volume {
 
     public void removeSensor(Sensor sensor) {
         this.sensor = null;
-    }
-
-    public void addEmployee(Employee employee) {
-        this.employee = employee;
     }
 
     public ProductAmount getProductAmount() {

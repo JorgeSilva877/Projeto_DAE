@@ -16,10 +16,11 @@ import java.util.Vector;
 
 @Table(name = "employees")
 public class Employee extends User {
-    @OneToMany (mappedBy = "employee")
+    @OneToMany (mappedBy = "employee", cascade = CascadeType.MERGE)
     private List<Volume> volumes;
     @ManyToOne
     private Warehouse warehouse;
+
     public Employee() {
         this.volumes = new LinkedList<>();
     }
@@ -49,4 +50,5 @@ public class Employee extends User {
     public void setWarehouse(Warehouse warehouse) {
         this.warehouse = warehouse;
     }
+
 }

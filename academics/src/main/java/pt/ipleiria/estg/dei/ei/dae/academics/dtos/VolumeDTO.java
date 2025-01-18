@@ -1,5 +1,6 @@
 package pt.ipleiria.estg.dei.ei.dae.academics.dtos;
 
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.Employee;
 import pt.ipleiria.estg.dei.ei.dae.academics.entities.Volume;
 
 import java.util.List;
@@ -19,10 +20,15 @@ public class VolumeDTO {
     }
 
     public static VolumeDTO from(Volume volume) {
+        Employee employee = volume.getEmployee();
+        if (employee == null){
+            employee = new Employee();
+        }
+
         return new VolumeDTO(
                 volume.getId(),
                 volume.getSensor().getId(),
-                volume.getEmployee().getUsername()
+                employee.getUsername()
         );
     }
 

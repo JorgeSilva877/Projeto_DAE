@@ -117,15 +117,4 @@ public class Order {
         this.volumes.remove(volume);
     }
 
-    //    public void calculateTotalPrice() {
-//        float total = 0;
-//        for (ProductAmount product : products) {
-//            total += product.getPrice();
-//        }
-//        this.precoTotal = total;
-//    }
-
-
-
-
 }

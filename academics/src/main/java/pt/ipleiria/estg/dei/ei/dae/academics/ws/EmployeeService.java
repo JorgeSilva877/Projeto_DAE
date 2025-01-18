@@ -6,7 +6,9 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import pt.ipleiria.estg.dei.ei.dae.academics.dtos.EmployeeDTO;
+import pt.ipleiria.estg.dei.ei.dae.academics.dtos.VolumeDTO;
 import pt.ipleiria.estg.dei.ei.dae.academics.ejbs.EmployeeBean;
+import pt.ipleiria.estg.dei.ei.dae.academics.entities.Employee;
 import pt.ipleiria.estg.dei.ei.dae.academics.security.Authenticated;
 
 import java.util.List;
@@ -38,6 +40,19 @@ public class EmployeeService {
                 employeeDTO.getWarehouseId()
         );
         return Response.ok().build();
+    }
+
+    @GET
+    @Path("/{username}")
+    public EmployeeDTO getEmploy(@PathParam("username") String username) {
+        return EmployeeDTO.from(employeeBean.find(username));
+    }
+
+
+    @GET
+    @Path("/{idWarehouseEmployee}/volumes")
+    public List<VolumeDTO> getAllVolumesByWarehouseEmployee(@PathParam("idWarehouseEmployee") int idWarehouseEmployee) {
+        return VolumeDTO.from(employeeBean.findAllByWarehouseEmployee(idWarehouseEmployee));
     }
 
 

@@ -70,4 +70,8 @@ public class User {
     public void setDtype(String dtype) {
         this.dtype = dtype;
     }
+
+    public boolean isEmpty() {
+        return (this.username == null || this.username.isEmpty());
+    }
 }
