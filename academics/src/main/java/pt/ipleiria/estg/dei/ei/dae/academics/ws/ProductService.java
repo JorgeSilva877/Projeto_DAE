@@ -45,4 +45,26 @@ public class ProductService {
                 .build();
     }
 
+    @PUT
+    @Authenticated
+    @RolesAllowed({"Manager"})
+    @Path("/{code}")
+    public Response update(@PathParam("code") int code, ProductDTO productDTO) {
+        // Atualiza o produto
+        Product updatedProduct = productBean.update(
+                code,
+                productDTO.getName(),
+                productDTO.getCategory(),
+                productDTO.getLimite(),
+                productDTO.getStock(),
+                productDTO.getPrice(),
+                productDTO.getWarehouseId()
+        );
+
+        // Retorna o produto atualizado no corpo da resposta
+        return Response.status(Response.Status.OK)
+                .entity(ProductDTO.from(updatedProduct))
+                .build();
+    }
+
 }

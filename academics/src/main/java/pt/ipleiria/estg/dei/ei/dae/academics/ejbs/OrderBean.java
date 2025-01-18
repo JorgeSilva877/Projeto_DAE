@@ -22,6 +22,8 @@ public class OrderBean {
     private VolumeBean volumeBean;
     @EJB
     private EmailBean emailBean;
+    @EJB
+    private ProductBean productBean;
 
     public int create(String usernameCliente, String morada, float precoTotal, List<ProductAmount> products) {
 
@@ -45,6 +47,7 @@ public class OrderBean {
             Volume volume = volumeBean.find(id);
             p.setVolume(volume);
             order.addVolume(volume);
+            productBean.shipOrder(p.getProductId(), p.getAmount());
         }
         //ENVIAR EMAIL
         var emailClient = clientBean.find(usernameCliente).getEmail();

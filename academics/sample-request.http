@@ -3,7 +3,7 @@ POST http://localhost:8080/academics/api/auth/login
 Content-Type: application/json
 Accept: application/json
 
-{ "username": "Laura01", "password": "123" }
+{ "username": "John", "password": "123" }
 
 ### Get Authenticated User
 GET http://localhost:8080/academics/api/auth/user
@@ -19,7 +19,7 @@ Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczN
 ### POST PRODUCT
 POST http://localhost:8080/academics/api/product/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJMYXVyYTAxIiwiaWF0IjoxNzM3MTU1OTExLCJleHAiOjE3MzcxNTk1MTF9.fVNdSSypgSPAo2i0BSBqp9SFH-WATuzyzzSgGz9otoz2AofbSqUh9Dy767nkViYu
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczNzIxMzk5NSwiZXhwIjoxNzM3MjE3NTk1fQ.CybayS4Mu5vqUezCkbJK7fbPSoXhjV4NCxVEzHcIwwCtYI0VpI5U7vbkI_HPbB7z
 
 {
   "name": "Product 1",
@@ -35,11 +35,10 @@ GET http://localhost:8080/academics/api/volume/
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJMYXVyYTAxIiwiaWF0IjoxNzM3MTU1NjcxLCJleHAiOjE3MzcxNTkyNzF9.YCO0rakQAI5XIqSCWZupu3sYHm_WVfXQPfju0_kKPu0QZ1qEmSMG1OmQYg0lzZl6
 
-
-
 ### Enroll Employee in Volume
 POST http://localhost:8080/academics/api/volume/enrollEmployee
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJKb2huIiwiaWF0IjoxNzM3MjE0Njc0LCJleHAiOjE3MzcyMTgyNzR9.WmwwLigzIwhckderKz69P6gogN_VSRye2G2DlapKOgRN3DGBJJhPNIji3uqbYEFj
 
 {
   "id" : 2,
@@ -50,6 +49,7 @@ Content-Type: application/json
 ### POST ORDER
 POST http://localhost:8080/academics/api/order
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczNzIxNDYxMiwiZXhwIjoxNzM3MjE4MjEyfQ.3pljxHLJ7tS0PUP8ztDUaPIdWJtrD0LvkmOmsIU1fGlCVHpNvGobkKAz20BQlOmd
 
 {
   "usernameClient": "Mariozin",
@@ -63,6 +63,7 @@ Content-Type: application/json
   ]
 }
 
+
 ###PATCH VALUE
 PATCH http://localhost:8080/academics/api/sensor/1
 Content-Type: application/json
@@ -74,4 +75,19 @@ Content-Type: application/json
 ###GET orders by client
 GET http://localhost:8080/academics/api/client/Mariozin/orders
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczNzIxMDc2NCwiZXhwIjoxNzM3MjE0MzY0fQ.5e5mJ0d0bBbkT3YqMG8Rc2K8sMM3IMjusK2f3GuIH_hhlFGhBHNQoaQTnfH5ysQs
 
+
+###PUT product
+PUT http://localhost:8080/academics/api/product/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJMYXVyYTAxIiwiaWF0IjoxNzM3MjEyNzQyLCJleHAiOjE3MzcyMTYzNDJ9.XajX6RINhD3Pe6LZVYDi1uiPUnsGEH6rqBlAQzTlto-jrx2MvfMTvT9oQNE5uSHa
+
+{
+    "name": "Teste",
+    "category": "Eletrodoméstico",
+    "limite": 100,
+    "stock": 50,
+    "price": 199.99,
+    "warehouseId": 1
+}

@@ -47,6 +47,18 @@ public class ProductBean {
         return produto;
     }
 
+    public void shipOrder(int code, int quantity) {
+        var product = find(code);
+        if (product == null) {
+            throw new IllegalArgumentException("Product not found");
+        }
+        int newStock = product.getStock() - quantity;
+        if (newStock < 0) {
+            throw new IllegalArgumentException("Not enough stock available");
+        }
+        product.setStock(newStock);
+    }
+
     public Product update(int code, String name, String category, int limite, int stock, double price, int idWarehouse) {
         var product = find(code);
         product.setName(name);

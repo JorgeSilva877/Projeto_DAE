@@ -56,25 +56,12 @@ public class VolumeService {
         );
 
         try {
-            System.err.println("Buscando volume com ID: " + volumeDTO.getId());
             var volume = volumeBean.find(volumeDTO.getId());
-            System.err.println("Volume encontrado: " + volume);
-
-            System.err.println("Obtendo ProductAmount do volume...");
             var productAmount = volume.getProductAmount();
-            System.err.println("ProductAmount obtido: " + productAmount);
-
-            System.err.println("Buscando produto com ID: " + productAmount.getProductId());
             var produto = productBean.find(productAmount.getProductId());
-            System.err.println("Produto encontrado: " + produto);
-
-            System.err.println("Criando sensor para a categoria: " + produto.getCategory());
             int idSensor = sensorBean.create(produto.getCategory());
-            System.err.println("Sensor criado com ID: " + idSensor);
 
-            System.err.println("Associando sensor ao volume...");
             volumeBean.enrollSensorInVolume(idSensor, volumeDTO.getId());
-            System.err.println("Sensor associado com sucesso.");
 
         } catch (Exception e) {
             e.printStackTrace();
