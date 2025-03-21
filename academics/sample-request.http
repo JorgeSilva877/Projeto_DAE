@@ -3,7 +3,7 @@ POST http://localhost:8080/academics/api/auth/login
 Content-Type: application/json
 Accept: application/json
 
-{ "username": "Mariozin", "password": "123" }
+{ "username": "Laura01", "password": "123" }
 
 ### Get Authenticated User
 GET http://localhost:8080/academics/api/auth/user
@@ -19,15 +19,15 @@ Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczN
 ### POST PRODUCT
 POST http://localhost:8080/academics/api/product/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJMYXVyYTAxIiwiaWF0IjoxNzM3MjE4OTUyLCJleHAiOjE3MzcyMjI1NTJ9.MgwMiVFuOmYuiWgzuD62jCwKopWLJ4rbgrWTbJ5UslUUtgbHoeygTQKrLkEhvJhN
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJMYXVyYTAxIiwiaWF0IjoxNzM3MjM5MDYwLCJleHAiOjE3MzcyNDI2NjB9.ccfqeLLVmiMZCmU0C-I_mCDLF4Yi7B-vv5oH0o7X5EFrpPlSsQdLBQq6pITaXCr9
 
 {
-  "name": "Product 1",
-  "category": "Category 1",
+  "name": "tv",
+  "category": "tecnologia",
   "limite": "15",
   "stock": 5,
   "price": 10.0,
-  "warehouseId": 1
+  "warehouseId": 2
 }
 
 ### GET VOLUMS
@@ -71,7 +71,7 @@ Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJNYXJpb3ppbiIsImlhdCI6MTczN
 
 
 ###PATCH VALUE
-PATCH http://localhost:8080/academics/api/sensor/1
+PATCH http://localhost:8080/academics/api/sensor/4
 Content-Type: application/json
 
 {
@@ -114,3 +114,15 @@ GET http://localhost:8080/academics/api/employee/John
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJKb2huIiwiaWF0IjoxNzM3MjI3MzgwLCJleHAiOjE3MzcyMzA5ODB9.ZWH5lc8SRo_nozrXicg8R7rAlRiKaPBqTRRbBwH1h1K8SPakD8bIy95cTGJFF0Of
 
+###POST EMPLOYEE
+POST http://localhost:8080/academics/api/employee
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJMYXVyYTAxIiwiaWF0IjoxNzM3MjM0NjAwLCJleHAiOjE3MzcyMzgyMDB9.AX-Ye8IdOTxMsE5g-mp1DoBO5J1aAntLcC60HYwEOVSyymrLpEz4a5LjriUcE82j
+
+{
+  "username": "Teste2",
+  "password": "Eletrodoméstico",
+  "name": "100",
+  "email": "50",
+  "warehouseId": 2
+}
