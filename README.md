@@ -3,3 +3,5 @@ that aims to track and analyze real-time data from sensors embedded in product p
 These sensors monitor temperature, atmospheric pressure, acceleration, and GPS positioning, transmitting data wirelessly from activation to delivery
 to ensure product quality. 
 This was developed in Java using Jakarta EE, token-based authentication for users, concurrency management methods, Hibernate and Lazy Loading.
+
+To test it, a very simple front end (academics-client folder) was developed with the sole purpose to test the backend through api requests.
